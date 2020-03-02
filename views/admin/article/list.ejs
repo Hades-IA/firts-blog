@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include("../../partials/head.ejs")%>
+    <title>Lista de Artigos</title>
+</head>
+
+<body>
+    <%- include("../../partials/navbar.ejs")%>
+
+    <div class="container">
+        <h2>Artigos</h2>
+        <a href="/adm/articles/new" class="btn btn-dark mb-5 mt-3">Criar Novos Artigos</a>
+
+        <table class="table table-bordered table-dark">
+            <thead>
+                <tr>
+                    <th>
+                        ID
+                    </th>
+                    <th>
+                        Title
+                    </th>
+                    <th>
+
+                        Slug
+                    </th>
+                    <th>
+                        Categoria
+                    </th>
+                    <th>
+                        Ações
+                    </th>
+
+                </tr>
+            </thead>
+            <tbody>
+
+                <% article.forEach(articles => { %>
+                <tr>
+                    <th>
+                        <%= articles.id %>
+                    </th>
+                    <th>
+                        <%= articles.title %>
+                    </th>
+                    <th>
+                        <%= articles.slug %>
+                    </th>
+                    <th>
+                        <%= articles.category.title %>
+                    </th>
+                    <th>
+
+                        <a href="/admin/article/edit/<%= articles.id %>" class="btn btn-warning">Edit</a
+                            class="btn btn-warning">
+
+
+                        <form action="/article/delete" method="POST" class="d-alignCenter"
+                            onsubmit="confirmeDelete(event, this)">
+                            <input type="hidden" name="id" value="<%= articles.id  %>">
+                            <button class="btn btn-danger">Delete</button class="btn btn-warning">
+                        </form>
+
+                    </th>
+                </tr>
+                <% } ) %>
+            </tbody>
+        </table>
+
+    </div>
+
+
+
+
+
+
+
+
+    <%- include("../../partials/scripts.ejs")%>
+    <%- include("../../partials/admin.ejs")%>
+
+</body>
+
+</html>

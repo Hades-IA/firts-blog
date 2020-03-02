@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('partials/head.ejs') %>
+    <title>Blogpress</title>
+</head>
+
+<body>
+    <%- include('partials/navbar-home.ejs')%>
+
+
+
+    <div class="container">
+        <h1 class="mr-auto ml-auto fit-content">Artigos</h1>
+        <% article.forEach(articles =>{ %>
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title"><%= articles.title %></h5>
+            </div>
+            <div class="card-body mt-3">
+                <article>
+
+                    <p class="card-text"><%- articles.body %></p>
+                </article>
+            </div>
+            <div class="card-footer mt-1">
+                <a href="/article/<%= articles.slug %>">veja mais</a>
+            </div>
+        </div>
+
+        <% }) %>
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+    <%- include('partials/scripts.ejs')%>
+
+</body>
+
+</html>

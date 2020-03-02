@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../../partials/head.ejs') %>
+    <title>Blogpress</title>
+</head>
+
+<body>
+    <%- include('../../partials/navbar-home.ejs')%>
+
+
+
+    <div class="container">
+        <h1 class="mr-auto ml-auto fit-content">Artigos</h1>
+        <% result.articles.rows.forEach(articles =>{ %>
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title"><%= articles.title %></h5>
+            </div>
+            <div class="card-body mt-3">
+                <article>
+
+                    <p class="card-text"><%- articles.body %></p>
+                </article>
+            </div>
+            <div class="card-footer mt-1">
+                <a href="/article/<%= articles.slug %>">veja mais</a>
+            </div>
+        </div>
+
+        <% }) %>
+
+        <div class="card-footer mt-1 d-flex ">
+
+            <div class="col col-4">
+                <% if(result.page == 0){ %>
+
+                <% }else{ %>
+                <a href="/articles/page/<%= result.page - 1 %>" class="btn btn-primary text-align-start"> Back</a>
+                <% } %>
+
+            </div>
+            <div class=" col col-4 d-flex">
+                <% if(result.page == 0){ %>
+                <a href="/" class="mr-2">Home</a>
+                <% }else { %>
+                <a href="/articles/page/0" class="mr-2">Inicio</a>
+                <% } %>
+                <% for (i =  result.page - 4; i != result.page; i++) {
+                    
+                    if ( i > 0) { %>
+
+                <a class=" mr-1" href="/articles/page/<%= i %>"><%= i + 1 %></a>
+                <% }else{ %>
+
+                <%  } } %>
+
+
+                <% for (i = 0; i >= result.pagesNum; i--) {
+                   
+                   if (i * -1 + result.page >= result.pagesNum * -1) { %>
+
+                <% } else if (i * -1 > 4 ) { %>
+
+                <% }
+                    else { %>
+
+                <a class=" mr-1" href="/articles/page/<%= i * -1 + result.page  %>"><%= i * -1 + result.page +1 %></a>
+                <% }
+                
+                } %>
+                <p class="mr-1">...</p>
+                <%  for (i = 0; i >= result.pagesNum; i--) {
+                    if (i = result.pagesNum) { %>
+
+                <a href="/articles/page/<%= parseInt(i * -1) %>"><%= parseInt(i * -1 + 1) %></a>
+                <% }
+                
+                } %>
+
+
+
+
+            </div>
+            <div class="col col-4 text-align-end">
+                <% if(result.next){ %>
+                <a href="/articles/page/<%= result.page + 1 %>" class="btn btn-primary text-align-end mr-0">Next</a>
+                <% } %>
+            </div>
+
+
+
+        </div>
+
+        <hr>
+
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+    <%- include('../../partials/scripts.ejs')%>
+
+</body>
+
+</html>

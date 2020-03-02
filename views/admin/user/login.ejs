@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include("../../partials/head.ejs")%>
+    <title>Criar Novo Categoria</title>
+</head>
+
+<body>
+    <%- include("../../partials/navbar-home.ejs")%>
+
+
+    <div class="container mt-5 mb-auto">
+        <div class="card">
+            <div class="card-header">
+                <h1>Login</h1>
+            </div>
+            <div class="card-body mt-1">
+                <form action="/adm-login/login" method="post" onsubmit="valida(event, this)">
+                    <label class="mt-4"> Seu e-mail </label>
+                    <input id="email" class="form-control mt-2" type="text" name="email"
+                        placeholder="Digite Seu e-mail">
+
+                    <label class="mt-3"> Sua Senha </label>
+                    <input id="pass" class="form-control mt-2" type="password" name="password"
+                        placeholder="Digite Sua Senha">
+                    <button class="btn btn-success mt-3">Loging de ADM</button>
+                </form>
+            </div>
+        </div>
+
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <%- include("../../partials/scripts.ejs")%>
+
+</body>
+
+</html>

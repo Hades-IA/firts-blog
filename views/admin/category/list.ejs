@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include("../../partials/head.ejs")%>
+    <title>Lista de cadegorias</title>
+</head>
+
+<body>
+    <%- include("../../partials/navbar.ejs")%>
+
+    <div class="container">
+        <h2>categorias</h2>
+        <a href="/admin/cetegories/new" class="btn btn-dark mb-5 mt-3">Criar Novas Categorias</a>
+
+        <table class="table table-bordered table-dark">
+            <thead>
+                <tr>
+                    <th>
+                        ID
+                    </th>
+                    <th>
+                        Title
+                    </th>
+                    <th>
+
+                        Slug
+                    </th>
+                    <th>
+                        Ações
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+
+                <% categorys.forEach(category => { %>
+                <tr>
+                    <th>
+                        <%= category.id %>
+                    </th>
+                    <th>
+                        <%= category.title %>
+                    </th>
+                    <th>
+                        <%= category.slug %>
+                    </th>
+                    <th>
+
+                        <a href="/admin/category/edit/<%= category.id %>" class="btn btn-warning">Edit</a
+                            class="btn btn-warning">
+
+
+                        <form action="/category/delete" method="POST" class="d-alignCenter"
+                            onsubmit="confirmeDelete(event, this)">
+                            <input type="hidden" name="id" value="<%= category.id  %>">
+                            <button class="btn btn-danger">Delete</button class="btn btn-warning">
+                        </form>
+
+                    </th>
+                </tr>
+                <% } ) %>
+            </tbody>
+        </table>
+
+    </div>
+
+
+
+
+
+
+
+
+    <%- include("../../partials/scripts.ejs")%>
+    <%- include("../../partials/admin.ejs")%>
+
+</body>
+
+</html>

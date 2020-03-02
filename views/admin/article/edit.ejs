@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include("../../partials/head.ejs")%>
+    <title>Edite</title>
+</head>
+
+<body>
+    <%- include("../../partials/navbar.ejs")%>
+
+
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+                <h1>Editando Artigo</h1>
+            </div>
+            <div class="card-body mt-3">
+                <form action="/article/editsave" method="post">
+                    <input class="form-control mt-2" type="text" name="title" value="<%= article.title %>">
+                    <input type="hidden" name="id" value="<%= article.id %>">
+                    <textarea id="article" class="form-control mt-1 " name="body"
+                        placeholder="Escreva o Artigo Aqui"><%= article.body %></textarea>
+                    <label> Categoria</label>
+                    <select name="categories" class="form-control mt-1 mb-1 fit-content" id="">
+                        <% category.forEach( (category) =>{ %>
+
+                        <% if(category.id == article.categoryId){ %>
+                        <option value="<%= category.id %>" selected> <%= category.title%> </option>
+                        <% }else{ %>
+                        <option value="<%= category.id %>"> <%= category.title%> </option>
+                        <% } %>
+
+                        <% }) %>
+                    </select>
+                    <button class="btn btn-success mt-1">Atualizar</button>
+                </form>
+            </div>
+        </div>
+
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <%- include("../../partials/scripts.ejs")%>
+    <%- include("../../partials/tiny.ejs")%>
+    <%- include("../../partials/admin.ejs")%>
+</body>
+
+</html>
